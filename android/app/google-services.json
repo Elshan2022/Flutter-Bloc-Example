@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "175515943086",
+    "project_id": "flutter-app-with-bloc",
+    "storage_bucket": "flutter-app-with-bloc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175515943086:android:6a53fcf446b2d100a12d3f",
+        "android_client_info": {
+          "package_name": "com.elshan.flutter_bloc_example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyzlUc9XfdAl6DlUxEzzYABDx-AO7iAas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
