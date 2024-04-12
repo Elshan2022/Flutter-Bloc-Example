@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/constants/text_styles.dart';
@@ -7,9 +9,11 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.hintText,
     this.isObscure = false,
+    this.onChanged,
   });
   final String hintText;
   final bool isObscure;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +37,7 @@ class CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
         ),
+        onChanged: onChanged,
       ),
     );
   }

@@ -1,17 +1,33 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/common/custom_button.dart';
+import 'package:flutter_bloc_example/common/custom_header.dart';
 import 'package:flutter_bloc_example/common/custom_textField.dart';
+import 'package:flutter_bloc_example/common/helper_functions.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/constants/text_styles.dart';
+import 'package:flutter_bloc_example/navigation/routes_name.dart';
+import 'package:flutter_bloc_example/screens/login_screen/bloc/sign_in_bloc.dart';
+import 'package:flutter_bloc_example/screens/login_screen/bloc/sign_in_event.dart';
+import 'package:flutter_bloc_example/screens/login_screen/bloc/sign_in_state.dart';
+import 'package:flutter_bloc_example/service/auth_service.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final IFirebaseAuthService _service = FirebaseAuthService();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    final _bottomPadding = MediaQuery.of(context).viewInsets.bottom;
+    final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
 
     return Scaffold(
       body: Container(
@@ -19,27 +35,78 @@ class LoginPage extends StatelessWidget {
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.only(bottom: _bottomPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _title(),
-                  const SizedBox(height: 26),
-                  _subtitle(),
-                  const SizedBox(height: 74),
-                  const CustomTextField(hintText: "Email"),
-                  const SizedBox(height: 29),
-                  const CustomTextField(hintText: "Password", isObscure: true),
-                  const SizedBox(height: 29),
-                  _forgotPasswordField(),
-                  const SizedBox(height: 30),
-                  CustomButton(
-                    buttonName: "Sign in",
-                    onPressed: () {},
-                  ),
-                  const SizedBox(height: 40),
-                  _createNewAccount(),
-                ],
+              padding: EdgeInsets.only(bottom: bottomPadding),
+              child: BlocBuilder<SignInBloc, SignInState>(
+                builder: (context, state) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const CustomHeader(
+                        subtitle: "Welcome back you’ve\n been missed!",
+                        title: "Login here",
+                      ),
+                      const SizedBox(height: 74),
+                      CustomTextField(
+                        hintText: "Email",
+                        onChanged: (email) {
+                          context
+                              .read<SignInBloc>()
+                              .add(EmailEvent(email: email));
+                        },
+                      ),
+                      const SizedBox(height: 29),
+                      CustomTextField(
+                        hintText: "Password",
+                        isObscure: true,
+                        onChanged: (password) {
+                          context
+                              .read<SignInBloc>()
+                              .add(PasswordEvent(password: password));
+                        },
+                      ),
+                      const SizedBox(height: 29),
+                      _forgotPasswordField(),
+                      const SizedBox(height: 30),
+                      CustomButton(
+                        buttonName: _isLoading ? "Loading..." : "Sign in",
+                        onPressed: () async {
+                          if (state.email != null && state.password != null) {
+                            setState(() {
+                              _isLoading = true;
+                            });
+                            try {
+                              await _service.signIn(
+                                state.email,
+                                state.password,
+                              );
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                RoutesName.home,
+                                (route) => false,
+                              );
+                            } catch (e) {
+                              HelperFunctions.showCustomSnackBar(
+                                context,
+                                e.toString(),
+                                Colors.red,
+                              );
+                            }
+                            setState(() {
+                              _isLoading = false;
+                            });
+                          } else {
+                            HelperFunctions.showCustomSnackBar(
+                              context,
+                              "Please enter email and password correctly",
+                              Colors.red,
+                            );
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 40),
+                      _createNewAccount(context),
+                    ],
+                  );
+                },
               ),
             ),
           ),
@@ -48,10 +115,12 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  SizedBox _createNewAccount() {
+  SizedBox _createNewAccount(BuildContext context) {
     return SizedBox(
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(RoutesName.signUp);
+        },
         child: Text(
           "Create new account",
           style: TextStyles.sameBold(
@@ -74,27 +143,6 @@ class LoginPage extends StatelessWidget {
             fontSize: 14,
           ),
         ),
-      ),
-    );
-  }
-
-  SizedBox _subtitle() {
-    return SizedBox(
-      height: 60,
-      child: Text(
-        "Welcome back you’ve\n been missed!",
-        textAlign: TextAlign.center,
-        style: TextStyles.sameBold(fontSize: 20),
-      ),
-    );
-  }
-
-  SizedBox _title() {
-    return SizedBox(
-      height: 45,
-      child: Text(
-        "Login here",
-        style: TextStyles.bold(color: AppColors.primaryDark, fontSize: 30),
       ),
     );
   }
