@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: AppTheme.appTheme,
         debugShowCheckedModeBanner: false,
-        initialRoute: RoutesName.login,
+        initialRoute: RoutesName.splash,
         routes: NavigatorManager().navigators,
         /* home: const RegisterScreen(), */
       ),
