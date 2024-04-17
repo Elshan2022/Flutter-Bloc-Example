@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
-import 'package:flutter_bloc_example/service/auth_service.dart';
+import 'package:flutter_bloc_example/screens/home_screen/home.dart';
+import 'package:flutter_bloc_example/screens/login_screen/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,28 +13,25 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final IFirebaseAuthService _service = FirebaseAuthService();
-
-  _checkUser() async {
-    await Future.delayed(const Duration(seconds: 3), () {
-      _service.authStateChange(context);
-    });
-  }
-
-  @override
-  void initState() {
-    _checkUser();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: CupertinoActivityIndicator(
-          color: AppColors.primaryDark,
-          radius: 20,
-        ),
+    return Scaffold(
+      body: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CupertinoActivityIndicator(
+                color: AppColors.primaryDark,
+                radius: 20,
+              ),
+            );
+          } else if (snapshot.hasData) {
+            return const HomeScreen();
+          } else {
+            return const LoginScreen();
+          }
+        },
       ),
     );
   }

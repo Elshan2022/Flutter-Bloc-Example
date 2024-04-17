@@ -1,13 +1,10 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc_example/navigation/routes_name.dart';
 import 'package:flutter_bloc_example/screens/register_screen/model/signUp_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 sealed class IFirebaseAuthService {
   Future<void> signUp(SignUpModel? model);
   Future<void> signIn(String? email, String? password);
-  StreamSubscription<User?> authStateChange(BuildContext context);
 }
 
 class FirebaseAuthService extends IFirebaseAuthService {
@@ -36,18 +33,5 @@ class FirebaseAuthService extends IFirebaseAuthService {
     } catch (e) {
       throw Exception(e.toString());
     }
-  }
-
-  @override
-  StreamSubscription<User?> authStateChange(BuildContext context) {
-    return _auth.authStateChanges().listen((User? user) {
-      if (user == null) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, RoutesName.login, (route) => false);
-      } else {
-        Navigator.pushNamedAndRemoveUntil(
-            context, RoutesName.home, (route) => false);
-      }
-    });
   }
 }

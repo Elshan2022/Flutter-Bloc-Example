@@ -12,6 +12,7 @@ import 'package:flutter_bloc_example/navigation/routes_name.dart';
 import 'package:flutter_bloc_example/screens/login_screen/bloc/sign_in_bloc.dart';
 import 'package:flutter_bloc_example/screens/login_screen/bloc/sign_in_event.dart';
 import 'package:flutter_bloc_example/screens/login_screen/bloc/sign_in_state.dart';
+import 'package:flutter_bloc_example/screens/login_screen/widgets/update_password_sheet.dart';
 import 'package:flutter_bloc_example/service/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -135,7 +136,18 @@ class _LoginScreenState extends State<LoginScreen> {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+             isScrollControlled: true,
+             isDismissible: false,
+            backgroundColor: AppColors.primaryLight,
+            shape: _bottomSheetStyle(),
+            builder: (context) {
+              return const UpdatePasswordSheet();
+            },
+          );
+        },
         child: Text(
           "Forgot your password?",
           style: TextStyles.sameBold(
@@ -143,6 +155,15 @@ class _LoginScreenState extends State<LoginScreen> {
             fontSize: 14,
           ),
         ),
+      ),
+    );
+  }
+
+  RoundedRectangleBorder _bottomSheetStyle() {
+    return const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(15),
+        topRight: Radius.circular(15),
       ),
     );
   }
