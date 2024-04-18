@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 sealed class IFirebaseAuthService {
   Future<void> signUp(SignUpModel? model);
   Future<void> signIn(String? email, String? password);
+  Future<void> updatePassword(String email);
 }
 
 class FirebaseAuthService extends IFirebaseAuthService {
@@ -31,6 +32,17 @@ class FirebaseAuthService extends IFirebaseAuthService {
             email: email, password: password);
       }
     } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  @override
+  Future<void> updatePassword(String? email) async {
+    try {
+      if (email != null) {
+        await _auth.sendPasswordResetEmail(email: email);
+      }
+    } on FirebaseException catch (e) {
       throw Exception(e.toString());
     }
   }

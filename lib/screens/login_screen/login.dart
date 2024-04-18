@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 state.password,
                               );
                               Navigator.of(context).pushNamedAndRemoveUntil(
-                                RoutesName.home,
+                                RoutesName.bottomBar,
                                 (route) => false,
                               );
                             } catch (e) {
@@ -139,12 +139,12 @@ class _LoginScreenState extends State<LoginScreen> {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-             isScrollControlled: true,
-             isDismissible: false,
+            isScrollControlled: true,
+            isDismissible: false,
             backgroundColor: AppColors.primaryLight,
             shape: _bottomSheetStyle(),
             builder: (context) {
-              return const UpdatePasswordSheet();
+              return UpdatePasswordSheet();
             },
           );
         },

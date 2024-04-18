@@ -41,6 +41,7 @@ dependencies:
   json_annotation: ^4.8.1
   freezed_annotation: ^2.4.1
   flutter_bloc: ^8.1.5
+  persistent_bottom_nav_bar: ^5.0.2
   
   
 

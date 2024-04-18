@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class SavedEmployer extends StatelessWidget {
+  const SavedEmployer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home screen"),
+        title: const Text("Saved employer"),
       ),
     );
   }

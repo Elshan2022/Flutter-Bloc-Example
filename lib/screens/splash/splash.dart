@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
-import 'package:flutter_bloc_example/screens/home_screen/home.dart';
+import 'package:flutter_bloc_example/screens/bottomBar/bottom_bar_screen.dart';
 import 'package:flutter_bloc_example/screens/login_screen/login.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             );
           } else if (snapshot.hasData) {
-            return const HomeScreen();
+            return BottomBarScreen();
           } else {
             return const LoginScreen();
           }
