@@ -3,4 +3,5 @@
 class AppRegX {
   final emailRegX = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
   final passwordRegX = RegExp(r'^(?=.*[A-Z])(?=.*\d).{8,}$');
+  final phoneNumber = RegExp(r'^\+\d{12}$');
 }

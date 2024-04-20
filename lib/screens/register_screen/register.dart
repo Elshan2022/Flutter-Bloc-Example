@@ -5,14 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/common/custom_button.dart';
 import 'package:flutter_bloc_example/common/custom_header.dart';
 import 'package:flutter_bloc_example/common/custom_textField.dart';
-import 'package:flutter_bloc_example/common/helper_functions.dart';
-import 'package:flutter_bloc_example/constants/app_regX.dart';
 import 'package:flutter_bloc_example/constants/text_styles.dart';
 import 'package:flutter_bloc_example/navigation/routes_name.dart';
 import 'package:flutter_bloc_example/screens/register_screen/bloc/signUp_event.dart';
 import 'package:flutter_bloc_example/screens/register_screen/bloc/signup_bloc.dart';
 import 'package:flutter_bloc_example/screens/register_screen/model/signUp_model.dart';
-import 'package:flutter_bloc_example/service/auth_service.dart';
+import 'package:flutter_bloc_example/screens/register_screen/sign_up_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -21,9 +19,7 @@ class RegisterScreen extends StatefulWidget {
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-  final IFirebaseAuthService _service = FirebaseAuthService();
-  final AppRegX _appRegX = AppRegX();
+class _RegisterScreenState extends SignUpController {
   bool isLoading = false;
 
   @override
@@ -43,6 +39,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           "Create an account so you can explore all the existing jobs",
                     ),
                     const SizedBox(height: 48),
+                    CustomTextField(
+                      hintText: "Name",
+                      onChanged: (name) {
+                        context.read<SignUpBloc>().add(NameEvent(name: name));
+                      },
+                    ),
+                    const SizedBox(height: 26),
+                    CustomTextField(
+                      hintText: "Surname",
+                      onChanged: (surname) {
+                        context
+                            .read<SignUpBloc>()
+                            .add(SurnameEvent(surname: surname));
+                      },
+                    ),
+                    const SizedBox(height: 26),
+                    CustomTextField(
+                      hintText: "Phone",
+                      keyboardType: TextInputType.number,
+                      onChanged: (phone) {
+                        context
+                            .read<SignUpBloc>()
+                            .add(PhoneNumberEvent(phoneNumber: phone));
+                      },
+                    ),
+                    const SizedBox(height: 26),
                     CustomTextField(
                       hintText: "Email",
                       onChanged: (email) {
@@ -68,58 +90,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onChanged: (confirmPassword) {
                         context.read<SignUpBloc>().add(
                               ConfirmPasswordEvent(
-                                  confirmPassword: confirmPassword),
+                                confirmPassword: confirmPassword,
+                              ),
                             );
                       },
                     ),
                     const SizedBox(height: 53),
                     CustomButton(
-                        buttonName: isLoading ? "Loading..." : "sign up",
-                        onPressed: () async {
-                          final isValidEmail =
-                              _appRegX.emailRegX.hasMatch(state.email!);
-                          final isValidPassword =
-                              _appRegX.passwordRegX.hasMatch(state.password!);
-                          final isEqual =
-                              state.password == state.confirmPassword;
-
-                          if (isValidEmail && isValidPassword && isEqual) {
-                            try {
-                              setState(() {
-                                isLoading = true;
-                              });
-                              await _service.signUp(
-                                SignUpModel(
-                                  email: state.email,
-                                  password: state.password,
-                                  confirmPassword: state.confirmPassword,
-                                ),
-                              );
-                              setState(() {
-                                isLoading = false;
-                              });
-                              HelperFunctions.showCustomSnackBar(
-                                context,
-                                "You logged successfully",
-                                Colors.green,
-                                2,
-                              );
-                              Navigator.of(context).pushNamed(RoutesName.login);
-                            } catch (e) {
-                              HelperFunctions.showCustomSnackBar(
-                                context,
-                                e.toString(),
-                                Colors.red,
-                              );
-                            }
-                          } else {
-                            HelperFunctions.showCustomSnackBar(
-                              context,
-                              "Please check your email and password",
-                              Colors.red,
-                            );
-                          }
-                        }),
+                      buttonName: isLoading ? "Loading..." : "Sign up",
+                      onPressed: () async {
+                        await signUp(
+                          SignUpModel(
+                            name: state.name,
+                            surname: state.surname,
+                            phoneNumber: state.phoneNumber,
+                            email: state.email,
+                            password: state.password,
+                            confirmPassword: state.confirmPassword,
+                          ),
+                          context,
+                        );
+                      },
+                    ),
                     const SizedBox(height: 30),
                     TextButton(
                       onPressed: () {

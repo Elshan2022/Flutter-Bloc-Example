@@ -10,19 +10,25 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.isObscure = false,
     this.onChanged,
+    this.padding = 20,
+    this.keyboardType = TextInputType.name,
   });
   final String hintText;
   final bool isObscure;
   final Function(String)? onChanged;
+  final double padding;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: TextFormField(
         obscureText: isObscure,
+        keyboardType: keyboardType,
         cursorColor: AppColors.primaryDark,
         style: TextStyles.medium(fontSize: 16, color: AppColors.grey),
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(padding),
           filled: true,
           fillColor: AppColors.primaryLight,
           hintStyle: TextStyles.medium(fontSize: 16, color: AppColors.grey),

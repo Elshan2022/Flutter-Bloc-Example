@@ -16,12 +16,14 @@ class BottomBarScreen extends StatelessWidget {
   );
 
   final _padding = const NavBarPadding.only(left: 0, right: 0);
+  final PersistentTabController _controller = PersistentTabController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PersistentTabView(
         context,
+        controller: _controller,
         screens: _bottomBarMock.buildScreens(),
         items: _bottomBarMock.navBarItems,
         padding: _padding,

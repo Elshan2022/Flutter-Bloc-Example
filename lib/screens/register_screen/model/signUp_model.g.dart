@@ -11,6 +11,9 @@ _$SignUpModelImpl _$$SignUpModelImplFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       password: json['password'] as String?,
       confirmPassword: json['confirmPassword'] as String?,
+      name: json['name'] as String?,
+      surname: json['surname'] as String?,
+      phoneNumber: json['phoneNumber'] as String?,
     );
 
 Map<String, dynamic> _$$SignUpModelImplToJson(_$SignUpModelImpl instance) =>
@@ -18,4 +21,7 @@ Map<String, dynamic> _$$SignUpModelImplToJson(_$SignUpModelImpl instance) =>
       'email': instance.email,
       'password': instance.password,
       'confirmPassword': instance.confirmPassword,
+      'name': instance.name,
+      'surname': instance.surname,
+      'phoneNumber': instance.phoneNumber,
     };

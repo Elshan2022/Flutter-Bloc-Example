@@ -6,11 +6,13 @@ part 'signUp_model.g.dart';
 
 @freezed
 class SignUpModel with _$SignUpModel {
-  const factory SignUpModel({
-     String? email,
-     String? password,
-     String? confirmPassword,
-  }) = _SignUpModel;
+  const factory SignUpModel(
+      {String? email,
+      String? password,
+      String? confirmPassword,
+      String? name,
+      String? surname,
+      String? phoneNumber}) = _SignUpModel;
 
   factory SignUpModel.fromJson(Map<String, dynamic> json) =>
       _$SignUpModelFromJson(json);
