@@ -1,31 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/common/custom_textField.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/constants/text_styles.dart';
 import 'package:flutter_bloc_example/gen/assets.gen.dart';
+import 'package:flutter_bloc_example/screens/home_screen/bloc/user_information_bloc.dart';
+import 'package:flutter_bloc_example/screens/home_screen/bloc/user_information_state.dart';
+import 'package:flutter_bloc_example/service/auth_service.dart';
+import 'package:flutter_bloc_example/service/image_picker_service.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AppBarWidget extends StatelessWidget {
-  const AppBarWidget({super.key});
+  AppBarWidget({super.key});
+  final ImagePickerService _pickerService = ImagePickerService();
+  final IFirebaseAuthService _service = FirebaseAuthService();
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       flexibleSpace: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: _userImage(),
-              title: _userName(),
-              subtitle: _location(),
-              trailing: _notification(),
-            ),
-            const SizedBox(height: 15),
-            const CustomTextField(hintText: "Search", padding: 10),
-          ],
+        child: BlocBuilder<UserInformationBloc, UserInformationState>(
+          builder: (context, state) {
+            return Column(
+              children: [
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: _userImage(),
+                  title: _userName(state),
+                  subtitle: _location(state),
+                  trailing: _notification(),
+                ),
+                const SizedBox(height: 15),
+                const CustomTextField(hintText: "Search", padding: 10),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -42,29 +53,19 @@ class AppBarWidget extends StatelessWidget {
     );
   }
 
-  Row _location() {
-    return Row(
-      children: [
-        const Icon(
-          Icons.location_on,
-          color: AppColors.white,
-          size: 14,
-        ),
-        const SizedBox(width: 5),
-        Text(
-          "Porto, Portugal",
-          style: TextStyles.medium(
-            color: AppColors.white,
-            fontSize: 12,
-          ),
-        ),
-      ],
+  Text _location(UserInformationState state) {
+    return Text(
+      "${state.phoneNumber}",
+      style: TextStyles.medium(
+        color: AppColors.white,
+        fontSize: 12,
+      ),
     );
   }
 
-  Text _userName() {
+  Text _userName(UserInformationState state) {
     return Text(
-      "Cristiano Ronaldo",
+      "${state.name} ${state.surname}",
       style: TextStyles.sameBold(
         color: AppColors.white,
         fontSize: 14,
@@ -74,7 +75,12 @@ class AppBarWidget extends StatelessWidget {
 
   InkWell _userImage() {
     return InkWell(
-      onTap: () {},
+      onTap: () async {
+        final imageFile = await _pickerService.selectImageFromGallery();
+        debugPrint("Image file $imageFile");
+        final imageUrl = await _service.setUserImage(imageFile);
+        debugPrint("Image url $imageUrl");
+      },
       child: Container(
         height: 50,
         width: 50,

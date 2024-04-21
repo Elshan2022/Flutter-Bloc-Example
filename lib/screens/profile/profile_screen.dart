@@ -4,10 +4,25 @@ import 'package:flutter_bloc_example/screens/login_screen/login.dart';
 import 'package:flutter_bloc_example/service/auth_service.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   final IFirebaseAuthService _service = FirebaseAuthService();
+
+  _fetchUserInfo() async{
+    await _service.fetchUserInformation();
+  }
+
+  @override
+  void initState() {
+    _fetchUserInfo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
