@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/navigation/navigator_manager.dart';
 import 'package:flutter_bloc_example/navigation/routes_name.dart';
+import 'package:flutter_bloc_example/screens/home_screen/bloc/selected_service_bloc.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/user_information_bloc.dart';
 import 'package:flutter_bloc_example/screens/login_screen/bloc/sign_in_bloc.dart';
 import 'package:flutter_bloc_example/screens/login_screen/bloc/update_password_bloc.dart';
@@ -28,6 +29,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SignInBloc()),
         BlocProvider(create: (context) => UpdatePasswordBloc()),
         BlocProvider(create: (context) => UserInformationBloc()),
+        BlocProvider(create: (context) => SelectedServiceBloc()),
+
       ],
       child: MaterialApp(
         theme: AppTheme.appTheme,
