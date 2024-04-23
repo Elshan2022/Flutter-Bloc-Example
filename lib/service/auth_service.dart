@@ -12,6 +12,9 @@ sealed class IFirebaseAuthService {
   Future<void> signOut();
   Future<Map<String, dynamic>?> fetchUserInformation();
   Future<String?> setUserImage(File? imageFile);
+  Future<void> updateUserImage(String? imagePath);
+  Stream<String?> getUserImage();
+  Future<void> deleteProfileImage();
 }
 
 class FirebaseAuthService extends IFirebaseAuthService {
@@ -94,13 +97,68 @@ class FirebaseAuthService extends IFirebaseAuthService {
   @override
   Future<String?> setUserImage(File? imageFile) async {
     final user = _auth.currentUser;
+
     if (user != null) {
-      final ref = FirebaseStorage.instance.ref();
-      final imageReference = ref.child('userImages/${user.displayName}.png');
-      await imageReference.putFile(imageFile!, SettableMetadata(contentType: 'image/png'));
-      final url = await imageReference.getDownloadURL();
-      return url;
+      try {
+        final ref = FirebaseStorage.instance.ref();
+        final imageReference = ref.child('userImages/${user.email}.png');
+        await imageReference.putFile(
+            imageFile!, SettableMetadata(contentType: 'image/png'));
+        final url = await imageReference.getDownloadURL();
+        return url;
+      } catch (e) {
+        throw Exception(e);
+      }
     }
     return null;
+  }
+
+  @override
+  Future<void> updateUserImage(String? imagePath) async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      try {
+        await _fireStore
+            .collection("users")
+            .doc(user.uid)
+            .update({"userImage": imagePath});
+      } catch (e) {
+        throw Exception(e);
+      }
+    }
+  }
+
+  @override
+  Stream<String?> getUserImage() {
+    final user = _auth.currentUser;
+    if (user != null) {
+      try {
+        return _fireStore
+            .collection("users")
+            .doc(user.uid)
+            .snapshots()
+            .map((snapshot) => snapshot.data()?['userImage'] as String?);
+      } catch (e) {
+        throw Exception(e);
+      }
+    } else {
+      return const Stream.empty();
+    }
+  }
+
+  @override
+  Future<void> deleteProfileImage() async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      try {
+        await _fireStore.collection("users").doc(user.uid).update(
+          {
+            "userImage": FieldValue.delete(),
+          },
+        );
+      } catch (e) {
+        throw Exception(e);
+      }
+    }
   }
 }

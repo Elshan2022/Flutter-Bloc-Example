@@ -6,12 +6,14 @@ class UserInformationState extends Equatable {
   final String? surname;
   final String? email;
   final String? phoneNumber;
+  final String? imageUrl;
 
   const UserInformationState({
     this.name,
     this.surname,
     this.email,
     this.phoneNumber,
+    this.imageUrl,
   });
 
   UserInformationState copyWith({
@@ -19,15 +21,17 @@ class UserInformationState extends Equatable {
     String? surname,
     String? email,
     String? phoneNumber,
+    String? imageUrl,
   }) {
     return UserInformationState(
       name: name ?? this.name,
       surname: surname ?? this.surname,
       email: email ?? this.email,
       phoneNumber: phoneNumber ?? this.phoneNumber,
+      imageUrl: imageUrl ?? this.imageUrl,
     );
   }
 
   @override
-  List<Object?> get props => [name, surname, email, phoneNumber];
+  List<Object?> get props => [name, surname, email, phoneNumber, imageUrl];
 }

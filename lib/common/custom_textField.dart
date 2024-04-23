@@ -12,12 +12,16 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.padding = 20,
     this.keyboardType = TextInputType.name,
+    this.isVisibleSuffix = false,
+    this.suffixIcon,
   });
   final String hintText;
   final bool isObscure;
   final Function(String)? onChanged;
   final double padding;
   final TextInputType keyboardType;
+  final Widget? suffixIcon;
+  final bool isVisibleSuffix;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +32,7 @@ class CustomTextField extends StatelessWidget {
         cursorColor: AppColors.primaryDark,
         style: TextStyles.medium(fontSize: 16, color: AppColors.grey),
         decoration: InputDecoration(
+          suffixIcon: isVisibleSuffix ? suffixIcon : null,
           contentPadding: EdgeInsets.all(padding),
           filled: true,
           fillColor: AppColors.primaryLight,

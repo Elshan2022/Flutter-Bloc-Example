@@ -28,14 +28,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SignInBloc()),
         BlocProvider(create: (context) => UpdatePasswordBloc()),
         BlocProvider(create: (context) => UserInformationBloc()),
-
       ],
       child: MaterialApp(
         theme: AppTheme.appTheme,
         debugShowCheckedModeBanner: false,
         initialRoute: RoutesName.splash,
         routes: NavigatorManager().navigators,
-        /* home: const RegisterScreen(), */
       ),
     );
   }

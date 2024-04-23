@@ -20,3 +20,8 @@ class PhoneNumberEvent extends UserInformationEvent {
   String? phoneNumber;
   PhoneNumberEvent({this.phoneNumber});
 }
+
+class UserImageEvent extends UserInformationEvent {
+  String? imageUrl;
+  UserImageEvent({this.imageUrl});
+}

@@ -9,6 +9,7 @@ class UserInformationBloc
     on<SurnameEvent>(_onSurname);
     on<EmailEvent>(_onEmail);
     on<PhoneNumberEvent>(_onPhoneNumber);
+    on<UserImageEvent>(_onUserImage);
   }
 
   _onName(NameEvent event, Emitter<UserInformationState> emit) {
@@ -32,6 +33,14 @@ class UserInformationBloc
   _onPhoneNumber(PhoneNumberEvent event, Emitter<UserInformationState> emit) {
     if (event.phoneNumber != null) {
       emit(state.copyWith(phoneNumber: event.phoneNumber));
+    }
+  }
+
+  _onUserImage(UserImageEvent event, Emitter<UserInformationState> emit) {
+    if (event.imageUrl != null) {
+      emit(state.copyWith(imageUrl: event.imageUrl));
+    } else {
+      emit(state.copyWith(imageUrl: null));
     }
   }
 }
