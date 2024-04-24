@@ -10,6 +10,7 @@ import 'package:flutter_bloc_example/service/auth_service.dart';
 
 abstract class HomeScreenController extends State<HomeScreen> {
   final IFirebaseAuthService _service = FirebaseAuthService();
+
   bool isLoading = false;
 
   Future<void> fetchUserInformation(BuildContext context) async {

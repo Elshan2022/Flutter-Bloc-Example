@@ -156,6 +156,8 @@ class FirebaseAuthService extends IFirebaseAuthService {
             "userImage": FieldValue.delete(),
           },
         );
+        final imagePath = "userImages/${user.email}.png";
+        await storage.ref().child(imagePath).delete();
       } catch (e) {
         throw Exception(e);
       }

@@ -7,6 +7,8 @@ import 'package:flutter_bloc_example/navigation/routes_name.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/selected_service_bloc.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/selected_service_event.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/selected_service_state.dart';
+import 'package:flutter_bloc_example/screens/home_screen/bloc/services_by_category_bloc.dart';
+import 'package:flutter_bloc_example/screens/home_screen/bloc/services_by_category_event.dart';
 
 class MostPopularServices extends StatefulWidget {
   const MostPopularServices({super.key});
@@ -36,11 +38,16 @@ class _MostPopularServicesState extends State<MostPopularServices> {
               return BlocBuilder<SelectedServiceBloc, SelectedServiceState>(
                 builder: (context, state) {
                   final isSelected = state.service == title;
+
                   return InkWell(
                     onTap: () {
                       context
                           .read<SelectedServiceBloc>()
                           .add(SetSelectedServiceEvent(service: title));
+
+                      context.read<ServicesByCategoryBloc>().add(
+                            GetServicesByCategoryEvent(category: title),
+                          );
                     },
                     child: Container(
                       padding: const EdgeInsets.all(7),
