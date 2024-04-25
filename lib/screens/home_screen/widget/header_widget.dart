@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_example/common/custom_textField.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/constants/text_styles.dart';
+import 'package:flutter_bloc_example/navigation/routes_name.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/user_information_bloc.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/user_information_state.dart';
 import 'package:flutter_bloc_example/screens/home_screen/widget/user_image.dart';
@@ -27,13 +27,30 @@ class AppBarWidget extends StatelessWidget {
                   trailing: _notification(),
                 ),
                 const SizedBox(height: 15),
-                const CustomTextField(
-                  hintText: "Search",
-                  padding: 10,
-                  isVisibleSuffix: true,
-                  suffixIcon: Icon(
-                    Icons.search,
-                    color: AppColors.grey,
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(RoutesName.search);
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Search",
+                          style: TextStyles.medium(
+                            fontSize: 16,
+                            color: AppColors.grey,
+                          ),
+                        ),
+                        const Icon(Icons.search, color: AppColors.grey),
+                      ],
+                    ),
                   ),
                 ),
               ],

@@ -11,6 +11,7 @@ class EmployerInformationCart extends StatelessWidget {
     required this.field,
     required this.salary,
     required this.raking,
+    required this.onTap,
   });
   final String imagePath;
   final String name;
@@ -18,37 +19,41 @@ class EmployerInformationCart extends StatelessWidget {
   final String field;
   final String salary;
   final String raking;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(10),
-      decoration: _decorationCart(),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 120,
-            width: 110,
-            decoration: _decorationRow(),
-          ),
-          Container(
-            width: 225,
-            height: 120,
-            padding: const EdgeInsets.only(left: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _nameSurnameAndBookMark(),
-                _field(),
-                _salary(),
-                _raking(),
-              ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(10),
+        decoration: _decorationCart(),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 120,
+              width: 110,
+              decoration: _decorationRow(),
             ),
-          ),
-        ],
+            Container(
+              width: 225,
+              height: 120,
+              padding: const EdgeInsets.only(left: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _nameSurnameAndBookMark(),
+                  _field(),
+                  _salary(),
+                  _raking(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

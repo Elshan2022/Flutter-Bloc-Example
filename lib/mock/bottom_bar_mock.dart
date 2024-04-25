@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_example/screens/allServices/all_services.dart';
+import 'package:flutter_bloc_example/screens/detail_screen/detail_screen.dart';
+import 'package:flutter_bloc_example/screens/search_screen/serach_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/screens/chat/chat_screen.dart';
@@ -19,6 +21,8 @@ class BottomBarMock {
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           routes: {
             "/allServices": (context) => const AllServices(),
+            "/search": (context) => SearchScreen(),
+            "/detail": (context) =>  DetailScreen(),
           },
         )),
     PersistentBottomNavBarItem(

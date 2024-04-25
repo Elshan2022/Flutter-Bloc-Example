@@ -46,6 +46,7 @@ dependencies:
   equatable: ^2.0.5
   image_picker: ^1.1.0
   firebase_storage: ^11.7.2
+  geocoding: ^3.0.0
   
   
 

@@ -5,4 +5,6 @@ class RoutesName {
   static const splash = "/splash";
   static const bottomBar = "/bottomBar";
   static const allServices = "/allServices";
+  static const search = "/search";
+  static const detail = "/detail";
 }

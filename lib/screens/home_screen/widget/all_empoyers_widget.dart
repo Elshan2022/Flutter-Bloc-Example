@@ -1,10 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/mock/services_list.dart';
+import 'package:flutter_bloc_example/screens/detail_screen/detail_screen.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/services_by_category_bloc.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/services_by_category_state.dart';
 import 'package:flutter_bloc_example/screens/home_screen/widget/user_information_cart.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class AllEmployersListView extends StatefulWidget {
   const AllEmployersListView({super.key});
@@ -30,7 +33,7 @@ class _AllEmployersListViewState extends State<AllEmployersListView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: FutureBuilder<List<ServiceModel>>(
         future: _fetchServices,
         builder: (context, snapshot) {
@@ -65,6 +68,15 @@ class _AllEmployersListViewState extends State<AllEmployersListView> {
                       field: item?.field ?? "No information",
                       salary: item?.salary ?? "No information",
                       raking: item?.ratingRank ?? "No information",
+                      onTap: () {
+                        if (item != null && item.id != null) {
+                          PersistentNavBarNavigator.pushNewScreen(
+                            context,
+                            screen: DetailScreen(index: index),
+                            withNavBar: true,
+                          );
+                        }
+                      },
                     );
                   },
                 );

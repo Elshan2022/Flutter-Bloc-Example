@@ -1,9 +1,11 @@
 import 'package:flutter_bloc_example/navigation/routes_name.dart';
 import 'package:flutter_bloc_example/screens/allServices/all_services.dart';
 import 'package:flutter_bloc_example/screens/bottomBar/bottom_bar_screen.dart';
+import 'package:flutter_bloc_example/screens/detail_screen/detail_screen.dart';
 import 'package:flutter_bloc_example/screens/home_screen/home.dart';
 import 'package:flutter_bloc_example/screens/login_screen/login.dart';
 import 'package:flutter_bloc_example/screens/register_screen/register.dart';
+import 'package:flutter_bloc_example/screens/search_screen/serach_screen.dart';
 import 'package:flutter_bloc_example/screens/splash/splash.dart';
 
 class NavigatorManager {
@@ -16,5 +18,7 @@ class NavigatorManager {
     "/home": (context) => const HomeScreen(),
     "/bottomBar": (context) => BottomBarScreen(),
     "/allServices": (context) => const AllServices(),
+    "/search": (context) => SearchScreen(),
+    "/detail": (context) => DetailScreen(),
   };
 }
