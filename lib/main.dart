@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/navigation/navigator_manager.dart';
 import 'package:flutter_bloc_example/navigation/routes_name.dart';
-import 'package:flutter_bloc_example/screens/detail_screen/bloc/location_bloc.dart';
+import 'package:flutter_bloc_example/screens/detail_screen/bloc/about_bloc.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/selected_service_bloc.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/services_by_category_bloc.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/user_information_bloc.dart';
@@ -35,8 +35,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SelectedServiceBloc()),
         BlocProvider(create: (context) => ServicesByCategoryBloc()),
         BlocProvider(create: (context) => SearchBloc()),
-        BlocProvider(create: (context) => LocationBloc()),
-
+        BlocProvider(create: (context) => AboutBloc()),
 
       ],
       child: MaterialApp(

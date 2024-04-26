@@ -1,19 +1,15 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_example/common/helper_functions.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/constants/text_styles.dart';
 import 'package:flutter_bloc_example/mock/services_list.dart';
-import 'package:flutter_bloc_example/screens/detail_screen/bloc/location_bloc.dart';
-import 'package:flutter_bloc_example/screens/detail_screen/bloc/location_event.dart';
-import 'package:flutter_bloc_example/screens/detail_screen/bloc/location_state.dart';
-import 'package:flutter_bloc_example/service/location_service.dart';
+import 'package:flutter_bloc_example/screens/detail_screen/widgets/about_widget.dart';
+import 'package:flutter_bloc_example/screens/detail_screen/widgets/location_widget.dart';
+import 'package:flutter_bloc_example/screens/detail_screen/widgets/message_book_widget.dart';
 
 class DetailScreen extends StatefulWidget {
-  DetailScreen({super.key, this.index});
-  final int? index;
+  const DetailScreen({super.key, this.id});
+  final String? id;
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -21,32 +17,22 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   final List<ServiceModel> _serviceList = ServiceModel.serviceList;
-  final LocationService _locationService = LocationService();
-  bool _isLoading = false;
+  late final ServiceModel _service;
+
+  _findItem() {
+    final item = _serviceList.singleWhere((element) {
+      return element.id == widget.id;
+    });
+
+    setState(() {
+      _service = item;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    _getLocation();
-  }
-
-  _getLocation() async {
-    setState(() {
-      _isLoading = true;
-    });
-    try {
-      final item = _serviceList[widget.index!];
-      final address =
-          await _locationService.getLocation(item.latitude, item.longitude);
-      debugPrint("Address $address");
-      context.read<LocationBloc>().add(CoordinatesEvent(location: address));
-    } catch (e) {
-      debugPrint("Exception $e");
-      HelperFunctions.showCustomSnackBar(context, e.toString(), Colors.red);
-    }
-    setState(() {
-      _isLoading = false;
-    });
+    _findItem();
   }
 
   @override
@@ -62,41 +48,65 @@ class _DetailScreenState extends State<DetailScreen> {
             decoration: _decoration(),
             child: Container(
               margin: const EdgeInsets.only(left: 16, right: 16, top: 20),
-              child: Stack(
-                children: [
-                  Column(
-                    children: [
-                      _header(),
-                      const SizedBox(height: 20),
-                      _nameAndRank(),
-                      const SizedBox(height: 20),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.location_on,
-                            color: AppColors.primaryDark,
-                          ),
-                          const SizedBox(width: 15),
-                          BlocBuilder<LocationBloc, LocationState>(
-                            builder: (context, state) {
-                              return Text(
-                                /* _isLoading
-                                    ? "Address getting..."
-                                    : state.location! */
-                                "New York",
-                                style: TextStyles.medium(
-                                  fontSize: 18,
-                                  color: AppColors.grey,
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+              child: SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _header(),
+                        const SizedBox(height: 20),
+                        _nameAndRank(),
+                        const SizedBox(height: 20),
+                        LocationWidget(serviceModel: _service),
+                        const SizedBox(height: 15),
+                        _salary(),
+                        const SizedBox(height: 15),
+                        const Divider(color: AppColors.grey),
+                        const SizedBox(height: 15),
+                        _aboutTitle(),
+                        const SizedBox(height: 10),
+                        AboutWidget(model: _service),
+                        const SizedBox(height: 60),
+                      ],
+                    ),
+                  ],
+                ),
               ),
+            ),
+          ),
+          const MessageBook(),
+        ],
+      ),
+    );
+  }
+
+  Text _aboutTitle() {
+    return Text(
+      "About me",
+      style: TextStyles.bold(
+        fontSize: 20,
+        color: Colors.black,
+      ),
+    );
+  }
+
+  RichText _salary() {
+    return RichText(
+      text: TextSpan(
+        children: [
+          TextSpan(
+            text: "${_service.salary}\$",
+            style: TextStyles.sameBold(
+              fontSize: 18,
+              color: AppColors.primaryDark,
+            ),
+          ),
+          TextSpan(
+            text: "(per day)",
+            style: TextStyles.medium(
+              color: AppColors.grey,
+              fontSize: 14,
             ),
           ),
         ],
@@ -108,7 +118,7 @@ class _DetailScreenState extends State<DetailScreen> {
     return Row(
       children: [
         Text(
-          "${_serviceList[widget.index!].name} ${_serviceList[widget.index!].surname}",
+          "${_service.name} ${_service.surname}",
           style: TextStyles.sameBold(
             color: AppColors.primaryDark,
             fontSize: 16,
@@ -121,7 +131,7 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
         const SizedBox(width: 10),
         Text(
-          "${_serviceList[widget.index!].ratingRank}",
+          "${_service.ratingRank}",
           style: TextStyles.sameBold(
             color: AppColors.primaryDark,
             fontSize: 16,
@@ -136,7 +146,7 @@ class _DetailScreenState extends State<DetailScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          _serviceList[widget.index!].field.toString(),
+          _service.field.toString(),
           style: TextStyles.bold(
             fontSize: 20,
             color: Colors.black,
@@ -180,7 +190,7 @@ class _DetailScreenState extends State<DetailScreen> {
           width: double.infinity,
           height: 350,
           child: Image.network(
-            _serviceList[widget.index!].image.toString(),
+            _service.image.toString(),
             fit: BoxFit.cover,
           ),
         ),

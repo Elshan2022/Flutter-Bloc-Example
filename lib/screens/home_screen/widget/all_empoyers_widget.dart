@@ -72,7 +72,7 @@ class _AllEmployersListViewState extends State<AllEmployersListView> {
                         if (item != null && item.id != null) {
                           PersistentNavBarNavigator.pushNewScreen(
                             context,
-                            screen: DetailScreen(index: index),
+                            screen: DetailScreen(id: item.id),
                             withNavBar: true,
                           );
                         }

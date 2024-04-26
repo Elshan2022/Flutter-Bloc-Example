@@ -57,11 +57,12 @@ class ServiceModel {
       field: 'Plumbing',
       about:
           'Experienced plumber with over 10 years of experience. Specializes in both residential and commercial plumbing services. Committed to providing high-quality workmanship and excellent customer service. Trusted by many satisfied clients for reliable and efficient plumbing solutions. Always ready to tackle any plumbing issue with professionalism and expertise.',
-      latitude: '40.7128',
-      longitude: '-74.0060',
+      latitude: '40.37439845968968',
+      longitude: '49.845896454035824',
       ratingRank: '4.5',
       salary: '50',
-      image: 'https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg',
+      image:
+          'https://m.media-amazon.com/images/M/MV5BODUyNzM1NzY0NF5BMl5BanBnXkFtZTYwNjk5ODQ0._V1_FMjpg_UX1000_.jpg',
     ),
     ServiceModel(
       id: '2',
@@ -74,7 +75,8 @@ class ServiceModel {
       longitude: '-118.2437',
       ratingRank: '4.8',
       salary: '60',
-      image: 'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1575',
+      image:
+          'https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1575',
     ),
     ServiceModel(
       id: '3',
@@ -87,7 +89,8 @@ class ServiceModel {
       longitude: '-87.6298',
       ratingRank: '4.3',
       salary: '55',
-      image: 'https://plus.unsplash.com/premium_photo-1683121366070-5ceb7e007a97?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D',
+      image:
+          'https://plus.unsplash.com/premium_photo-1683121366070-5ceb7e007a97?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D',
     ),
     ServiceModel(
       id: '4',
@@ -100,7 +103,8 @@ class ServiceModel {
       longitude: '-95.3698',
       ratingRank: '4.7',
       salary: '58',
-      image: 'https://www.safetyandhealthmagazine.com/ext/resources/images/news/construction/older-male-construction-worker.jpg?t=1698244045&width=696',
+      image:
+          'https://www.safetyandhealthmagazine.com/ext/resources/images/news/construction/older-male-construction-worker.jpg?t=1698244045&width=696',
     ),
     ServiceModel(
       id: '5',
@@ -113,7 +117,8 @@ class ServiceModel {
       longitude: '-74.0060',
       ratingRank: '4.6',
       salary: '55',
-      image: 'https://www.peopleready.com/wp-content/uploads/2021/01/construction-industry.jpg',
+      image:
+          'https://www.peopleready.com/wp-content/uploads/2021/01/construction-industry.jpg',
     ),
     ServiceModel(
       id: '6',
@@ -126,7 +131,8 @@ class ServiceModel {
       longitude: '-118.2437',
       ratingRank: '4.9',
       salary: '60',
-      image: 'https://subcusa.com/wp-content/uploads/2023/12/Advancing-Opp-2-scaled.jpg',
+      image:
+          'https://subcusa.com/wp-content/uploads/2023/12/Advancing-Opp-2-scaled.jpg',
     ),
     ServiceModel(
       id: '7',
@@ -139,7 +145,8 @@ class ServiceModel {
       longitude: '-87.6298',
       ratingRank: '4.4',
       salary: '57',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToifPrZriEgBfvf5GSU07OZbvz0YAdiAim8W9W8Kk98gEqc8ubMFjfffdqFUB76D4axRs&usqp=CAU',
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToifPrZriEgBfvf5GSU07OZbvz0YAdiAim8W9W8Kk98gEqc8ubMFjfffdqFUB76D4axRs&usqp=CAU',
     ),
     ServiceModel(
       id: '8',
@@ -152,7 +159,8 @@ class ServiceModel {
       longitude: '-95.3698',
       ratingRank: '4.8',
       salary: '58',
-      image: 'https://bloximages.newyork1.vip.townnews.com/leader-call.com/content/tncms/assets/v3/editorial/2/38/238990cf-99ec-5a45-a49b-9644477b1ce5/65c6a7f0ec37e.image.jpg',
+      image:
+          'https://bloximages.newyork1.vip.townnews.com/leader-call.com/content/tncms/assets/v3/editorial/2/38/238990cf-99ec-5a45-a49b-9644477b1ce5/65c6a7f0ec37e.image.jpg',
     ),
     ServiceModel(
       id: '9',
@@ -165,7 +173,8 @@ class ServiceModel {
       longitude: '-74.0060',
       ratingRank: '4.7',
       salary: '52',
-      image: 'https://image.cnbcfm.com/api/v1/image/105420523-1535475566932civilengineer.jpg?v=1535475620&w=1920&h=1080',
+      image:
+          'https://image.cnbcfm.com/api/v1/image/105420523-1535475566932civilengineer.jpg?v=1535475620&w=1920&h=1080',
     ),
     ServiceModel(
       id: '10',
@@ -178,7 +187,8 @@ class ServiceModel {
       longitude: '-118.2437',
       ratingRank: '4.9',
       salary: '55',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN21ia0awfyaeWmIttlua95V9qG8eUoBjD0V_j48AMuA&s',
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN21ia0awfyaeWmIttlua95V9qG8eUoBjD0V_j48AMuA&s',
     ),
     ServiceModel(
       id: '11',
@@ -191,7 +201,8 @@ class ServiceModel {
       longitude: '-87.6298',
       ratingRank: '4.5',
       salary: '54',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaUmU64XlqC1wwPvDJTimDdSdOdX3emH6In9Ee2NIkmVM0FDxip6l521JC4Prb3GPOCJA&usqp=CAU',
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaUmU64XlqC1wwPvDJTimDdSdOdX3emH6In9Ee2NIkmVM0FDxip6l521JC4Prb3GPOCJA&usqp=CAU',
     ),
     ServiceModel(
       id: '12',
@@ -204,7 +215,8 @@ class ServiceModel {
       longitude: '-95.3698',
       ratingRank: '4.8',
       salary: '56',
-      image: 'https://webassets.oxfamamerica.org/media/images/iStock-1264076515.2e16d0ba.fill-768x338.jpegquality-60.jpg',
+      image:
+          'https://webassets.oxfamamerica.org/media/images/iStock-1264076515.2e16d0ba.fill-768x338.jpegquality-60.jpg',
     ),
     ServiceModel(
       id: '13',
@@ -217,7 +229,8 @@ class ServiceModel {
       longitude: '-74.0060',
       ratingRank: '4.7',
       salary: '30',
-      image: 'https://us.softbankrobotics.com/hubfs/Clean%20SoftBank%20resized.jpg',
+      image:
+          'https://us.softbankrobotics.com/hubfs/Clean%20SoftBank%20resized.jpg',
     ),
     ServiceModel(
       id: '14',
@@ -230,7 +243,8 @@ class ServiceModel {
       longitude: '-118.2437',
       ratingRank: '4.9',
       salary: '32',
-      image: 'https://plus.unsplash.com/premium_photo-1667520405114-47d3677f966e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      image:
+          'https://plus.unsplash.com/premium_photo-1667520405114-47d3677f966e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ),
     ServiceModel(
       id: '15',
@@ -243,7 +257,8 @@ class ServiceModel {
       longitude: '-87.6298',
       ratingRank: '4.6',
       salary: '31',
-      image: 'https://i2-prod.cambridge-news.co.uk/incoming/article18737730.ece/ALTERNATES/s615/1_JS141922522.jpg',
+      image:
+          'https://i2-prod.cambridge-news.co.uk/incoming/article18737730.ece/ALTERNATES/s615/1_JS141922522.jpg',
     ),
     ServiceModel(
       id: '16',
@@ -256,7 +271,8 @@ class ServiceModel {
       longitude: '-95.3698',
       ratingRank: '4.8',
       salary: '33',
-      image: 'https://www.theworkersunion.com/wp-content/uploads/2022/11/Union-Support-for-Cleaners.jpg',
+      image:
+          'https://www.theworkersunion.com/wp-content/uploads/2022/11/Union-Support-for-Cleaners.jpg',
     ),
     ServiceModel(
       id: '17',
@@ -269,7 +285,8 @@ class ServiceModel {
       longitude: '-74.0060',
       ratingRank: '4.7',
       salary: '40',
-      image: 'https://cdn.britannica.com/77/148077-050-D790E99D/Carpenter-door-workshop.jpg',
+      image:
+          'https://cdn.britannica.com/77/148077-050-D790E99D/Carpenter-door-workshop.jpg',
     ),
     ServiceModel(
       id: '18',
@@ -282,7 +299,8 @@ class ServiceModel {
       longitude: '-118.2437',
       ratingRank: '4.9',
       salary: '42',
-      image: 'https://facts.net/wp-content/uploads/2023/10/20-surprising-facts-about-carpentry-1696321212.jpg',
+      image:
+          'https://facts.net/wp-content/uploads/2023/10/20-surprising-facts-about-carpentry-1696321212.jpg',
     ),
     ServiceModel(
       id: '19',
@@ -295,7 +313,8 @@ class ServiceModel {
       longitude: '-87.6298',
       ratingRank: '4.6',
       salary: '41',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC5xkhN_fx4QTTyS2B_KbYxEm1Ef8Rj6iDfs7UbMSD_8olW_yoQTgUcX4_pHOiyN6w2a0&usqp=CAU',
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC5xkhN_fx4QTTyS2B_KbYxEm1Ef8Rj6iDfs7UbMSD_8olW_yoQTgUcX4_pHOiyN6w2a0&usqp=CAU',
     ),
     ServiceModel(
       id: '20',
@@ -308,7 +327,8 @@ class ServiceModel {
       longitude: '-95.3698',
       ratingRank: '4.8',
       salary: '43',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyWQTtJSM6o9JwLkMEmayCBwAdcnfp4iECBKQ4visgnSpf0Yh8Dulm7ZrzJs2Ixst8t60&usqp=CAU',
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyWQTtJSM6o9JwLkMEmayCBwAdcnfp4iECBKQ4visgnSpf0Yh8Dulm7ZrzJs2Ixst8t60&usqp=CAU',
     ),
     ServiceModel(
       id: '21',
@@ -321,7 +341,8 @@ class ServiceModel {
       longitude: '-74.0060',
       ratingRank: '4.7',
       salary: '35',
-      image: 'https://866attylaw.com/wp-content/uploads/2019/10/construction-site-painting-accident.jpg',
+      image:
+          'https://866attylaw.com/wp-content/uploads/2019/10/construction-site-painting-accident.jpg',
     ),
     ServiceModel(
       id: '22',
@@ -334,7 +355,8 @@ class ServiceModel {
       longitude: '-118.2437',
       ratingRank: '4.9',
       salary: '37',
-      image: 'https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/featured-image-painter.jpeg.jpg',
+      image:
+          'https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/featured-image-painter.jpeg.jpg',
     ),
     ServiceModel(
       id: '23',
@@ -347,7 +369,8 @@ class ServiceModel {
       longitude: '-87.6298',
       ratingRank: '4.6',
       salary: '36',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS90Min_QfkUQOS83bmsD3TfENm2ojAowrgMdjsJ-gJ1e6sqSR0_bj1XFLnWjFWxiYsNGU&usqp=CAU',
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS90Min_QfkUQOS83bmsD3TfENm2ojAowrgMdjsJ-gJ1e6sqSR0_bj1XFLnWjFWxiYsNGU&usqp=CAU',
     ),
     ServiceModel(
       id: '24',
@@ -360,7 +383,8 @@ class ServiceModel {
       longitude: '-95.3698',
       ratingRank: '4.8',
       salary: '38',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIZPa7J-oKYwLWWFXdCqBITcMa0XbjoetO5xm99YJJ4f5PqtBI1BNHcxfCy__KanZ2lRs&usqp=CAU',
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIZPa7J-oKYwLWWFXdCqBITcMa0XbjoetO5xm99YJJ4f5PqtBI1BNHcxfCy__KanZ2lRs&usqp=CAU',
     ),
     ServiceModel(
       id: '25',
@@ -373,7 +397,8 @@ class ServiceModel {
       longitude: '-74.0060',
       ratingRank: '4.7',
       salary: '45',
-      image: 'https://images.ctfassets.net/8edxnwlq2x0m/5mTzlnrKVFNNsjhwhomq3/5b423e8f7e01ea79426169520f58af1a/Moving_Company',
+      image:
+          'https://images.ctfassets.net/8edxnwlq2x0m/5mTzlnrKVFNNsjhwhomq3/5b423e8f7e01ea79426169520f58af1a/Moving_Company',
     ),
     ServiceModel(
       id: '26',
@@ -386,7 +411,8 @@ class ServiceModel {
       longitude: '-118.2437',
       ratingRank: '4.9',
       salary: '47',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOMBVewhr_OB6XRnGuH4h5ZOMx0mj67t43BKodntmZt72wf1rFTXbe4mRrxRksV3dvBqE&usqp=CAU',
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOMBVewhr_OB6XRnGuH4h5ZOMx0mj67t43BKodntmZt72wf1rFTXbe4mRrxRksV3dvBqE&usqp=CAU',
     ),
     ServiceModel(
       id: '27',
@@ -399,7 +425,8 @@ class ServiceModel {
       longitude: '-87.6298',
       ratingRank: '4.6',
       salary: '46',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjgwmzxGqS-KC1DxJHGxFzM_qFPt4NRdDOQTG3vPNpWyLi_bMyx751SaLz4JZsKsWWBB8&usqp=CAU',
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjgwmzxGqS-KC1DxJHGxFzM_qFPt4NRdDOQTG3vPNpWyLi_bMyx751SaLz4JZsKsWWBB8&usqp=CAU',
     ),
     ServiceModel(
       id: '28',
@@ -412,7 +439,8 @@ class ServiceModel {
       longitude: '-95.3698',
       ratingRank: '4.8',
       salary: '48',
-      image: 'https://d2rxt25e475whq.cloudfront.net/wp-content/uploads/2023/07/25230426/AdobeStock_592432590-962x500.jpeg.webp',
+      image:
+          'https://d2rxt25e475whq.cloudfront.net/wp-content/uploads/2023/07/25230426/AdobeStock_592432590-962x500.jpeg.webp',
     ),
     ServiceModel(
       id: '29',
@@ -425,7 +453,8 @@ class ServiceModel {
       longitude: '-74.0060',
       ratingRank: '4.7',
       salary: '40',
-      image: 'https://www.4menearme.com/wp-content/uploads/2022/12/38186272_s-1024x682.jpg',
+      image:
+          'https://www.4menearme.com/wp-content/uploads/2022/12/38186272_s-1024x682.jpg',
     ),
     ServiceModel(
       id: '30',
@@ -438,7 +467,8 @@ class ServiceModel {
       longitude: '-118.2437',
       ratingRank: '4.9',
       salary: '42',
-      image: 'https://f.hubspotusercontent30.net/hubfs/7718689/shutterstock_1704900061.jpg',
+      image:
+          'https://f.hubspotusercontent30.net/hubfs/7718689/shutterstock_1704900061.jpg',
     ),
     ServiceModel(
       id: '31',
@@ -451,7 +481,8 @@ class ServiceModel {
       longitude: '-87.6298',
       ratingRank: '4.6',
       salary: '41',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbfDFcGigjCgaDBV9tEF9nn375HINZlhK4kGQkgXLLDj8MBUFjQEp6FrxmnIC01cigs20&usqp=CAU',
+      image:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbfDFcGigjCgaDBV9tEF9nn375HINZlhK4kGQkgXLLDj8MBUFjQEp6FrxmnIC01cigs20&usqp=CAU',
     ),
     ServiceModel(
       id: '32',
@@ -464,7 +495,8 @@ class ServiceModel {
       longitude: '-95.3698',
       ratingRank: '4.8',
       salary: '43',
-      image: 'https://getjobber.com/wp-content/uploads/2019/06/img-industryHero-handyman-1024x631.webp',
+      image:
+          'https://getjobber.com/wp-content/uploads/2019/06/img-industryHero-handyman-1024x631.webp',
     ),
   ];
 }

@@ -10,6 +10,7 @@ class CustomButton extends StatelessWidget {
     this.width = double.maxFinite,
     this.backgroundColor = AppColors.primaryDark,
     this.fontSize = 20,
+    this.textColor = AppColors.white,
     required this.onPressed,
   });
   final String buttonName;
@@ -18,6 +19,7 @@ class CustomButton extends StatelessWidget {
   final Function()? onPressed;
   final Color backgroundColor;
   final double fontSize;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class CustomButton extends StatelessWidget {
       buttonName,
       style: TextStyles.sameBold(
         fontSize: fontSize,
-        color: AppColors.white,
+        color: textColor,
       ),
     );
   }
