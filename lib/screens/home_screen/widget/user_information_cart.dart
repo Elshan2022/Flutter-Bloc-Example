@@ -12,6 +12,7 @@ class EmployerInformationCart extends StatelessWidget {
     required this.salary,
     required this.raking,
     required this.onTap,
+    this.onSaved,
   });
   final String imagePath;
   final String name;
@@ -20,6 +21,7 @@ class EmployerInformationCart extends StatelessWidget {
   final String salary;
   final String raking;
   final Function()? onTap;
+  final Function()? onSaved;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +86,7 @@ class EmployerInformationCart extends StatelessWidget {
           style: TextStyles.sameBold(fontSize: 14, color: AppColors.grey),
         ),
         InkWell(
-          onTap: () {},
+          onTap: onSaved,
           child: const Icon(Icons.bookmark, color: AppColors.primaryDark),
         )
       ],

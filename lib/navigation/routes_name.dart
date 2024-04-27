@@ -7,4 +7,5 @@ class RoutesName {
   static const allServices = "/allServices";
   static const search = "/search";
   static const detail = "/detail";
+  static const categoryService = "/categoryService";
 }

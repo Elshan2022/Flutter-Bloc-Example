@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/constants/text_styles.dart';
 import 'package:flutter_bloc_example/mock/services_icons_mock.dart';
+import 'package:flutter_bloc_example/screens/categoryService/bloc/category_service_bloc.dart';
+import 'package:flutter_bloc_example/screens/categoryService/bloc/category_service_event.dart';
+import 'package:flutter_bloc_example/screens/categoryService/category_service.dart';
 
 class MostUsedServices extends StatelessWidget {
   MostUsedServices({super.key});
@@ -19,7 +23,20 @@ class MostUsedServices extends StatelessWidget {
           runSpacing: 20,
           children: _iconMock.icons.map((e) {
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                context.read<CategoryServiceBloc>().add(
+                      GetCategoryServiceEvent(
+                        category: e["name"],
+                      ),
+                    );
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CategoryService(category: e['name']);
+                    },
+                  ),
+                );
+              },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
