@@ -1,55 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-class ServiceModel {
-  String? id;
-  String? name;
-  String? surname;
-  String? field;
-  String? about;
-  String? latitude;
-  String? longitude;
-  String? ratingRank;
-  String? salary;
-  String? image;
-  ServiceModel({
-    this.id,
-    this.name,
-    this.surname,
-    this.field,
-    this.about,
-    this.latitude,
-    this.longitude,
-    this.ratingRank,
-    this.salary,
-    this.image,
-  });
+import 'package:flutter_bloc_example/model/service_model.dart';
 
-  ServiceModel copyWith({
-    String? id,
-    String? name,
-    String? surname,
-    String? field,
-    String? about,
-    String? latitude,
-    String? longitude,
-    String? ratingRank,
-    String? salary,
-    String? image,
-  }) {
-    return ServiceModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      surname: surname ?? this.surname,
-      field: field ?? this.field,
-      about: about ?? this.about,
-      latitude: latitude ?? this.latitude,
-      longitude: longitude ?? this.longitude,
-      ratingRank: ratingRank ?? this.ratingRank,
-      salary: salary ?? this.salary,
-      image: image ?? this.image,
-    );
-  }
-
-  static List<ServiceModel> serviceList = [
+class ServiceList {
+  static const List<ServiceModel> serviceList = [
     ServiceModel(
       id: '1',
       name: 'John',

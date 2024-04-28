@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/constants/text_styles.dart';
 import 'package:flutter_bloc_example/mock/services_list.dart';
+import 'package:flutter_bloc_example/model/service_model.dart';
 import 'package:flutter_bloc_example/screens/detail_screen/widgets/about_widget.dart';
 import 'package:flutter_bloc_example/screens/detail_screen/widgets/location_widget.dart';
 import 'package:flutter_bloc_example/screens/detail_screen/widgets/message_book_widget.dart';
@@ -16,7 +17,7 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  final List<ServiceModel> _serviceList = ServiceModel.serviceList;
+  final List<ServiceModel> _serviceList = ServiceList.serviceList;
   late final ServiceModel _service;
 
   _findItem() {

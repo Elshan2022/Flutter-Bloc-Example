@@ -4,7 +4,7 @@ import 'package:flutter_bloc_example/common/custom_button.dart';
 import 'package:flutter_bloc_example/common/helper_functions.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/gen/assets.gen.dart';
-import 'package:flutter_bloc_example/service/auth_service.dart';
+import 'package:flutter_bloc_example/service/firbase_service.dart';
 import 'package:flutter_bloc_example/service/image_picker_service.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -12,7 +12,7 @@ class UserImage extends StatelessWidget {
   UserImage({super.key});
 
   final ImagePickerService _pickerService = ImagePickerService();
-  final IFirebaseAuthService _service = FirebaseAuthService();
+  final IFirebaseService _service = FirebaseService();
 
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,6 @@ import 'package:flutter_bloc_example/screens/home_screen/bloc/user_information_b
 import 'package:flutter_bloc_example/screens/login_screen/bloc/sign_in_bloc.dart';
 import 'package:flutter_bloc_example/screens/login_screen/bloc/update_password_bloc.dart';
 import 'package:flutter_bloc_example/screens/register_screen/bloc/signup_bloc.dart';
-import 'package:flutter_bloc_example/screens/savedEmployers/bloc/saved_service_bloc.dart';
 import 'package:flutter_bloc_example/screens/search_screen/bloc/search_bloc.dart';
 import 'package:flutter_bloc_example/theme/theme.dart';
 
@@ -39,10 +38,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SearchBloc()),
         BlocProvider(create: (context) => AboutBloc()),
         BlocProvider(create: (context) => CategoryServiceBloc()),
-        BlocProvider(create: (context) => SavedServicesBloc()),
-
-
-
       ],
       child: MaterialApp(
         theme: AppTheme.appTheme,

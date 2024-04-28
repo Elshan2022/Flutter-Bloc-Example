@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter_bloc_example/model/service_model.dart';
 import 'package:flutter_bloc_example/screens/register_screen/model/signUp_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-sealed class IFirebaseAuthService {
+sealed class IFirebaseService {
   Future<void> signUp(SignUpModel? model);
   Future<void> signIn(String? email, String? password);
   Future<void> updatePassword(String email);
@@ -15,9 +16,11 @@ sealed class IFirebaseAuthService {
   Future<void> updateUserImage(String? imagePath);
   Stream<String?> getUserImage();
   Future<void> deleteProfileImage();
+  Future<void> saveService(ServiceModel service);
+  getSavedServices();
 }
 
-class FirebaseAuthService extends IFirebaseAuthService {
+class FirebaseService extends IFirebaseService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
   final storage = FirebaseStorage.instance;
@@ -162,5 +165,49 @@ class FirebaseAuthService extends IFirebaseAuthService {
         throw Exception(e);
       }
     }
+  }
+
+  @override
+  Future<void> saveService(ServiceModel service) async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      try {
+        final userId = user.uid;
+        await _fireStore
+            .collection("users")
+            .doc(userId)
+            .collection("savedServices")
+            .add(ServiceModel(
+              about: service.about,
+              field: service.field,
+              id: service.id,
+              image: service.image,
+              isSaved: true,
+              latitude: service.latitude,
+              longitude: service.longitude,
+              name: service.name,
+              ratingRank: service.ratingRank,
+              salary: service.salary,
+              surname: service.surname,
+            ).toJson());
+      } catch (e) {
+        throw Exception(e);
+      }
+    }
+  }
+
+  @override
+  Stream<List<ServiceModel>> getSavedServices() {
+    final snapshot = _fireStore
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .collection("savedServices")
+        .snapshots();
+
+    final savedServices = snapshot.map((querySnapshot) => querySnapshot.docs
+        .map((doc) => ServiceModel.fromJson(doc.data()))
+        .toList());
+
+    return savedServices;
   }
 }

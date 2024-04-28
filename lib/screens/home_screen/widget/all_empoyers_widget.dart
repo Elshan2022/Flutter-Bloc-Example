@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/mock/services_list.dart';
+import 'package:flutter_bloc_example/model/service_model.dart';
 import 'package:flutter_bloc_example/screens/detail_screen/detail_screen.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/services_by_category_bloc.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/services_by_category_state.dart';
 import 'package:flutter_bloc_example/screens/home_screen/widget/user_information_cart.dart';
+import 'package:flutter_bloc_example/service/firbase_service.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class AllEmployersListView extends StatefulWidget {
@@ -17,7 +19,8 @@ class AllEmployersListView extends StatefulWidget {
 }
 
 class _AllEmployersListViewState extends State<AllEmployersListView> {
-  final List<ServiceModel> _serviceList = ServiceModel.serviceList;
+  final List<ServiceModel> _serviceList = ServiceList.serviceList;
+  final IFirebaseService _firebaseService = FirebaseService();
   late final Future<List<ServiceModel>> _fetchServices;
 
   Future<List<ServiceModel>> _getServicesList() async {
@@ -61,6 +64,7 @@ class _AllEmployersListViewState extends State<AllEmployersListView> {
                     final item = state.services!.isEmpty
                         ? snapshot.data?.elementAt(index)
                         : state.services!.elementAt(index);
+
                     return EmployerInformationCart(
                       imagePath: item?.image ?? "No information",
                       name: item?.name ?? "No information",
@@ -77,7 +81,9 @@ class _AllEmployersListViewState extends State<AllEmployersListView> {
                           );
                         }
                       },
-                      onSaved: () {},
+                      onSaved: () async {
+                        await _firebaseService.saveService(item!);
+                      },
                     );
                   },
                 );

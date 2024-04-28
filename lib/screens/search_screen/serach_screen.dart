@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/common/custom_textField.dart';
 import 'package:flutter_bloc_example/mock/services_list.dart';
+import 'package:flutter_bloc_example/model/service_model.dart';
 import 'package:flutter_bloc_example/screens/home_screen/widget/user_information_cart.dart';
 import 'package:flutter_bloc_example/screens/search_screen/bloc/search_bloc.dart';
 import 'package:flutter_bloc_example/screens/search_screen/bloc/search_event.dart';
@@ -10,7 +11,7 @@ import 'package:flutter_bloc_example/screens/search_screen/bloc/search_state.dar
 class SearchScreen extends StatelessWidget {
   SearchScreen({super.key});
 
-  final List<ServiceModel> _services = ServiceModel.serviceList;
+  final List<ServiceModel> _services = ServiceList.serviceList;
 
   @override
   Widget build(BuildContext context) {

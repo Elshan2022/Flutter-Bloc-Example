@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/mock/services_list.dart';
+import 'package:flutter_bloc_example/model/service_model.dart';
 import 'package:flutter_bloc_example/screens/categoryService/bloc/category_service_event.dart';
 import 'package:flutter_bloc_example/screens/categoryService/bloc/category_service_state.dart';
 
@@ -9,7 +10,7 @@ class CategoryServiceBloc
     on<GetCategoryServiceEvent>(_onGetCategory);
   }
 
-  final List<ServiceModel> _services = ServiceModel.serviceList;
+  final List<ServiceModel> _services = ServiceList.serviceList;
 
   _onGetCategory(
       GetCategoryServiceEvent event, Emitter<CategoryServiceState> emit) {

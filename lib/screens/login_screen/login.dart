@@ -13,7 +13,7 @@ import 'package:flutter_bloc_example/screens/login_screen/bloc/sign_in_bloc.dart
 import 'package:flutter_bloc_example/screens/login_screen/bloc/sign_in_event.dart';
 import 'package:flutter_bloc_example/screens/login_screen/bloc/sign_in_state.dart';
 import 'package:flutter_bloc_example/screens/login_screen/widgets/update_password_sheet.dart';
-import 'package:flutter_bloc_example/service/auth_service.dart';
+import 'package:flutter_bloc_example/service/firbase_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,7 +23,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final IFirebaseAuthService _service = FirebaseAuthService();
+  final IFirebaseService _service = FirebaseService();
   bool _isLoading = false;
 
   @override

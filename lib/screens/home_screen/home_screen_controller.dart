@@ -6,10 +6,10 @@ import 'package:flutter_bloc_example/common/helper_functions.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/user_information_bloc.dart';
 import 'package:flutter_bloc_example/screens/home_screen/bloc/user_information_event.dart';
 import 'package:flutter_bloc_example/screens/home_screen/home.dart';
-import 'package:flutter_bloc_example/service/auth_service.dart';
+import 'package:flutter_bloc_example/service/firbase_service.dart';
 
 abstract class HomeScreenController extends State<HomeScreen> {
-  final IFirebaseAuthService _service = FirebaseAuthService();
+  final IFirebaseService _service = FirebaseService();
 
   bool isLoading = false;
 

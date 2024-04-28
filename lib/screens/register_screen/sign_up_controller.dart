@@ -6,10 +6,10 @@ import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/navigation/routes_name.dart';
 import 'package:flutter_bloc_example/screens/register_screen/model/signUp_model.dart';
 import 'package:flutter_bloc_example/screens/register_screen/register.dart';
-import 'package:flutter_bloc_example/service/auth_service.dart';
+import 'package:flutter_bloc_example/service/firbase_service.dart';
 
 abstract class SignUpController extends State<RegisterScreen> {
-  final IFirebaseAuthService _service = FirebaseAuthService();
+  final IFirebaseService _service = FirebaseService();
   bool isLoading = false;
   Future<void> signUp(SignUpModel model, BuildContext context) async {
     if (model.name == null) {

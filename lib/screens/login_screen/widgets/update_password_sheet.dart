@@ -10,7 +10,7 @@ import 'package:flutter_bloc_example/constants/text_styles.dart';
 import 'package:flutter_bloc_example/screens/login_screen/bloc/update_password_bloc.dart';
 import 'package:flutter_bloc_example/screens/login_screen/bloc/update_password_event.dart';
 import 'package:flutter_bloc_example/screens/login_screen/bloc/update_password_state.dart';
-import 'package:flutter_bloc_example/service/auth_service.dart';
+import 'package:flutter_bloc_example/service/firbase_service.dart';
 
 class UpdatePasswordSheet extends StatefulWidget {
   const UpdatePasswordSheet({super.key});
@@ -21,7 +21,7 @@ class UpdatePasswordSheet extends StatefulWidget {
 
 class _UpdatePasswordSheetState extends State<UpdatePasswordSheet> {
   final _margin = const EdgeInsets.only(left: 16, right: 16, top: 30);
-  final IFirebaseAuthService _service = FirebaseAuthService();
+  final IFirebaseService _service = FirebaseService();
 
   bool _isLoading = false;
 
