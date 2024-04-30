@@ -1,5 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc_example/common/helper_functions.dart';
+import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/model/service_model.dart';
 import 'package:flutter_bloc_example/screens/register_screen/model/signUp_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,8 +21,9 @@ sealed class IFirebaseService {
   Future<void> updateUserImage(String? imagePath);
   Stream<String?> getUserImage();
   Future<void> deleteProfileImage();
-  Future<void> saveService(ServiceModel service);
-  getSavedServices();
+  Future<void> saveService(ServiceModel service, BuildContext context);
+  Stream<List<ServiceModel>> getSavedServices();
+  Future<void> unsavedItem(String id);
 }
 
 class FirebaseService extends IFirebaseService {
@@ -168,16 +174,31 @@ class FirebaseService extends IFirebaseService {
   }
 
   @override
-  Future<void> saveService(ServiceModel service) async {
+  Future<void> saveService(ServiceModel service, BuildContext context) async {
     final user = _auth.currentUser;
-    if (user != null) {
+
+    final querySnapshot = await _fireStore
+        .collection("users")
+        .doc(_auth.currentUser!.uid)
+        .collection("savedServices")
+        .get();
+    final savedServices = querySnapshot.docs
+        .map(
+          (e) => ServiceModel.fromJson(e.data()),
+        )
+        .toList();
+
+    final hasService = savedServices.any((element) => element.id == service.id);
+
+    if (user != null && hasService == false) {
       try {
         final userId = user.uid;
         await _fireStore
             .collection("users")
             .doc(userId)
             .collection("savedServices")
-            .add(ServiceModel(
+            .doc(service.id)
+            .set(ServiceModel(
               about: service.about,
               field: service.field,
               id: service.id,
@@ -190,9 +211,18 @@ class FirebaseService extends IFirebaseService {
               salary: service.salary,
               surname: service.surname,
             ).toJson());
+
+        HelperFunctions.showCustomSnackBar(
+            context, "Item was saved", AppColors.primaryDark);
       } catch (e) {
         throw Exception(e);
       }
+    } else {
+      HelperFunctions.showCustomSnackBar(
+        context,
+        "You have saved this item already",
+        Colors.red,
+      );
     }
   }
 
@@ -209,5 +239,16 @@ class FirebaseService extends IFirebaseService {
         .toList());
 
     return savedServices;
+  }
+
+  @override
+  Future<void> unsavedItem(String id) async {
+    final userId = _auth.currentUser!.uid;
+    await _fireStore
+        .collection('users')
+        .doc(userId)
+        .collection("savedServices")
+        .doc(id)
+        .delete();
   }
 }

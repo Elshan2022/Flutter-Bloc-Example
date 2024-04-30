@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc_example/constants/colors.dart';
 import 'package:flutter_bloc_example/constants/text_styles.dart';
 import 'package:flutter_bloc_example/model/service_model.dart';
+import 'package:flutter_bloc_example/screens/detail_screen/detail_screen.dart';
 import 'package:flutter_bloc_example/screens/home_screen/widget/user_information_cart.dart';
 import 'package:flutter_bloc_example/service/firbase_service.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class SavedEmployer extends StatefulWidget {
   const SavedEmployer({super.key});
@@ -33,7 +35,17 @@ class _SavedEmployerState extends State<SavedEmployer> {
                     field: service.field!,
                     salary: service.salary!,
                     raking: service.ratingRank!,
-                    onTap: () {},
+                    isSaved: service.isSaved,
+                    onSaved: () async {
+                      await _service.unsavedItem(service.id!);
+                    },
+                    onTap: () {
+                      PersistentNavBarNavigator.pushNewScreen(
+                        context,
+                        screen: DetailScreen(id: service.id),
+                        withNavBar: true,
+                      );
+                    },
                   );
                 }).toList(),
               );
